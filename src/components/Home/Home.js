@@ -33,9 +33,8 @@ function Home() {
                             <h1 className="m-0">
                                 <div className="hero-copy hero-cta">
                                   {isLoggedIn ? 
-                                   <Link to={'/chat'}>
                                     <img src={process.env.PUBLIC_URL+"/dist/images/chatge-logo.png"} width="150px" height={'60px'} alt="log" className="chat-logo"/>
-                                   </Link>:
+                                   :
                                    <>
                                     {/* <Link className="button" to={'/login'}>Login</Link> */}
                                     {/* <Link className="button button-primary" to={'/signup'}>Signup</Link> */}
@@ -60,7 +59,7 @@ function Home() {
                   <p className='hero-paragraph' style={{color:"whitesmoke", fontWeight:"bold" }}>
                     This is a groundbreaking approach to information retrieval.
                   </p>
-                  <p className='text-sm mb-1' >
+                  <p className='text-sm mb-1' style={{ fontSize: '28px', lineHeight: '1.7rem', fontWeight: '700' }} >
                     Components of our Solution <br/>
                      GPT-4 <br/>
                      Vector Database<br/>

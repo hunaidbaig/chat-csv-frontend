@@ -62,8 +62,7 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType  }) => 
         <p onClick={(e)=> faqsHandle(e)} > What is the distribution of long term contract?</p>
         <p onClick={(e)=> faqsHandle(e)} > How long does the spot dealers are used?</p>
         <p onClick={(e)=> faqsHandle(e)} > What are the sfdc onboarding docmentation?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What are spot dealers and how long they are used?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What is aggrement creation template?</p>
+        <p onClick={(e)=> faqsHandle(e)} > What is agreement creation template?</p>
       </div>
       }
       <div className='flex-faqs'>
