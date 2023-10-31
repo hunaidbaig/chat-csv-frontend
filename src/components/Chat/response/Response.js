@@ -2,6 +2,7 @@ import React from "react";
 import "./response.css";
 import { FaGg} from "react-icons/fa";
 import { BeatLoader } from "react-spinners";
+import { Image } from "antd";
 
 
 function Response({ loading, responseResult, type }) {
@@ -28,7 +29,10 @@ function Response({ loading, responseResult, type }) {
         :  
         (
           type === 'image' ? 
-          <img src={`data:image/jpeg;base64,${responseResult}`} alt="resutl image" />
+          <Image
+            src={`data:image/jpeg;base64,${responseResult}`} alt="resutl image"
+          />
+          // <img src={`data:image/jpeg;base64,${responseResult}`} alt="resutl image" />
         :
         (
           type === 'table' ? 

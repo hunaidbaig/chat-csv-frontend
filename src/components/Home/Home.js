@@ -124,7 +124,7 @@ function Home() {
 
           <section className='features section'>
             <div className='container'>
-              <h1 className='hero-title mt-1'>High-Level Architecture</h1>
+              <h1 className='hero-title mt-1' style={{textAlign:" center"}}>High-Level Architecture</h1>
               <div className='features-inner section-inner has-bottom-divider'>
                <img src={
                   process.env.PUBLIC_URL +
@@ -183,7 +183,7 @@ function Home() {
                       User-Friendly: Say goodbye to data complexities. We provide a streamlined, user-friendly approach to data analysis, making it accessible for all.
                       </p>
                       <p className='text-sm mb-1' style={{textAlign:"left"}} >
-                      Let Data Speak: Unleash your data's potential and let it tell its story with ease.
+                      Let Data Speak: Unleash your data.
                       </p>
                     </div>
                     <Link to={'/chat-sales'} className={'try-me-btn'}>Try me</Link >
@@ -195,7 +195,7 @@ function Home() {
 
           <section className='features section'>
             <div className='container'>
-              <h1 className='hero-title mt-1'>Problem Faced By Enterprises</h1>
+              <h1 className='hero-title mt-1' style={{textAlign:" center"}}>Problem Faced By Enterprises</h1>
               <div className='features-inner section-inner has-bottom-divider'>
                 <div className='features-wrap'>
                   <div className='feature text-center is-revealing'>
@@ -210,15 +210,13 @@ function Home() {
                         />
                       </div>
                       <h4 className='feature-title mt-24' style={{textAlign:"left"}}>
-                        Managing Diverse Contracts
+                        Managing Diverse Data
                       </h4>
                       <p className='text-sm mb-1' style={{textAlign:"left"}}>
-                        Deals with a variety of contracts from
-                        different vendors.
+                        Tackles a variety of data formats effortlessly. Whether it's diverse data sources or contracts.
                       </p>
                       <p className='text-sm mb-1' style={{textAlign:"left"}}>
-                        These contracts come with unique terms, structures, and
-                        details.
+                      We simplifies the complexities, becoming your go-to solution.
                       </p>
                     </div>
                   </div>
@@ -274,59 +272,7 @@ function Home() {
             </div>
           </section>
 
-          <section className='features section'>
-            <div className='container'>
-              <h1 className='section-title mt-1' style={{textAlign:" center"}}>Comparative Analysis</h1>
-              <div className='features-inner section-inner has-bottom-divider'>
-                <div className='features-wrap'>
-                  <div className='feature text-center is-revealing'>
-                    <div className='feature-inner'>
-                      <div className='feature-icon'>
-                        <img
-                          src={
-                            process.env.PUBLIC_URL +
-                            "dist/images/feature-icon-01.svg"
-                          }
-                          alt='Feature 01'
-                        />
-                      </div>
-                      <h4 className='feature-title mt-24' style={{textAlign:"left"}}>
-                      Retrieval Augmented Generation (RAG)
-                      </h4>
-                      <p className='text-sm mb-1' style={{textAlign:"left"}}>
-                      Technique that connects LLMs to extensive knowledge sources
-                      </p>
-                      <p className='text-sm mb-1' style={{textAlign:"left"}}>
-                      Enables conversational interaction with documents
-                      </p>
-                    </div>
-                  </div>
-                  <div className='feature text-center is-revealing'>
-                    <div className='feature-inner'>
-                      <div className='feature-icon'>
-                        <img
-                          src={
-                            process.env.PUBLIC_URL +
-                            "dist/images/feature-icon-02.svg"
-                          }
-                          alt='Feature 02'
-                        />
-                      </div>
-                      <h4 className='feature-title mt-24' style={{textAlign:"left"}}>
-                      Finetuning
-                      </h4>
-                      <p className='text-sm mb-1' style={{textAlign:"left"}}>
-                      Involves training a pre-existing model on a specific task or dataset
-                      </p>
-                      <p className='text-sm mb-1' style={{textAlign:"left"}}>
-                      Customizes model behavior for a particular application
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          
         </main>
 
         <Footer />
