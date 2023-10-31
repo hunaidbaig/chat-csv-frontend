@@ -1,0 +1,22 @@
+.container-input {
+  background-color: #353541;
+  color: white;
+  padding: 10px;
+  padding: 10px 25%;
+  text-align: justify;
+  display: flex;
+}
+.container-input span {
+  background-color: #265c78;
+  padding: 4px 10px;
+  margin-right: 10px;
+  height: fit-content;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 1360px) {
+  .container-input {
+    padding: 10px 5%;
+  }
+
+} 

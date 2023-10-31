@@ -1,0 +1,32 @@
+
+.flex-it{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-it img{
+    max-width: 130%;
+}
+
+.try-me-btn{
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    border: none;
+    background: #0b87f8;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 1360px) {
+    
+    .site-header-inner{
+        align-items: baseline;
+    }
+   .chat-logo{
+    width:140px;
+   }
+  } 
+
