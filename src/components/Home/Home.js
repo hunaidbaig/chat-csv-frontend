@@ -60,15 +60,10 @@ function Home() {
                   <p className='hero-paragraph' style={{color:"whitesmoke", fontWeight:"bold" }}>
                     This is a groundbreaking approach to information retrieval.
                   </p>
-                  <p className='hero-paragraph' style={{color:"whitesmoke", fontWeight:"bold" }}>
-                    Our solution Retrieval Augmented Generation
-                  </p>
                   <p className='text-sm mb-1' >
                     Components of our Solution <br/>
                      GPT-4 <br/>
-                    LlamaIndex<br/>
-                     Vector<br/>
-                    Database SentenceTransformer
+                     Vector Database<br/>
                   </p>
                 </div>
                 <div className='hero-figure anime-element'>
