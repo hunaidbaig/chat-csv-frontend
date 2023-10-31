@@ -51,7 +51,7 @@ function Login() {
       <div className={styles.container}>
         <h3>
           <span>Welcome to ChatGene,</span><br/> where cutting-edge technology meets
-          the complex world of contract management in GE Healthcare.
+          the complex world of Data management.
         </h3>
         <form
           className={styles.formContainer}
