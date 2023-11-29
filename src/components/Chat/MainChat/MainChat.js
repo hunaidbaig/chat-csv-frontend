@@ -48,7 +48,7 @@ const MainChat = ({ promptList ,toggle, toggleHandle, conversationList, typingBt
 
                 <div>
                     <Link to={"/"}>
-                        <img src={process.env.PUBLIC_URL + "/dist/images/alfuttaim-logo-3.svg"} width="180px" alt='ge logo' className='navbar-logo' />
+                        <img src={process.env.PUBLIC_URL + "/dist/images/xloop-chat-logo.png"} width="180px" alt='ge logo' className='navbar-logo' />
                     </Link>
                 </div>
                 

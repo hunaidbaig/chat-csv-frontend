@@ -25,25 +25,11 @@ function Home() {
                         <div className="brand header-brand">
                             <h1 className="m-0">
                                 <Link to={'/'}>
-                                    <img className="header-logo-image" src={process.env.PUBLIC_URL+"dist/images/xloop_logo.png"} alt="Logo" width="100px"/>
+                                    <img className="header-logo-image" src={process.env.PUBLIC_URL+"/dist/images/chatge-logo.png"} alt="Logo" width="100px"/>
                                 </Link>
                             </h1>
                         </div>
-                        <div className="brand header-brand">
-                            <h1 className="m-0">
-                                <div className="hero-copy hero-cta">
-                                  {isLoggedIn ? 
-                                    <img src={process.env.PUBLIC_URL+"/dist/images/chatge-logo.png"} width="150px" height={'60px'} alt="log" className="chat-logo"/>
-                                   :
-                                   <>
-                                    {/* <Link className="button" to={'/login'}>Login</Link> */}
-                                    {/* <Link className="button button-primary" to={'/signup'}>Signup</Link> */}
-                                    </>
-                                  }
-                                    
-                                </div>
-                            </h1>
-                        </div>
+                        
                     </div>
                 </div>
             </header>
