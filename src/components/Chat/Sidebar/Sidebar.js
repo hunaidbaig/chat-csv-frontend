@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../../context/UserAuthContext";
-import { AiOutlineFileAdd } from 'react-icons/ai';
+// import { AiOutlineFileAdd } from 'react-icons/ai';
 import "./sidebar.css";
 import { BiLogOut } from "react-icons/bi";
 
@@ -56,13 +56,12 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType  }) => 
       </div>
         :
       <div className='chats'>
-        <p onClick={(e)=> faqsHandle(e)} > What is the purpose of this procedural document?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What role does the Finance department play in the onboarding renewal process of ITPs?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What entities does this procedural document apply to?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What is the distribution of long term contract?</p>
-        <p onClick={(e)=> faqsHandle(e)} > How long does the spot dealers are used?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What are the sfdc onboarding docmentation?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What is agreement creation template?</p>
+        <p onClick={(e)=> faqsHandle(e)} > What were the amendments to the project documents?</p>
+        <p onClick={(e)=> faqsHandle(e)} > What is letter of hypothecation?</p>
+        <p onClick={(e)=> faqsHandle(e)} > What is EPC direct agreement?</p>
+        <p onClick={(e)=> faqsHandle(e)} > What is acceptable letter of credit?</p>
+        <p onClick={(e)=> faqsHandle(e)} > Give me summary of environmental,health and safety guidelines.</p>
+        <p onClick={(e)=> faqsHandle(e)} > Give me main points of rules of interpretation?</p>
       </div>
       }
       <div className='flex-faqs'>

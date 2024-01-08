@@ -24,139 +24,82 @@ const Chat = ({ chatType })=>{
         setToggle(!toggle)
     }
 
-    const inputHandle = (e)=>{
-        e.preventDefault();
-
-        setLoading(false);
-
-        const newComponent = <Input text={text} />;
-        const reponseComponent = <Response loading={loading} responseResult={responseResult} />;
-
-        setConversationList([...conversationList, newComponent, reponseComponent]);
-
-        setText('')
-        setTypingBtn(true)
-        setTyping(true);
-
-
-
-        fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL : process.env.REACT_APP_CHAT_GENE_URL}/${text}`)
-        .then((respone=> respone.json() )).then(result=>{
-            let type = null;
-            let response = null;
-            // const {response} = result;
-            const {text, table, image} = result;
-
-            console.log(table, 'table');
-
-            if(text){
-                response = text;
-            }
-            else if(table){
-                type = 'table'
-                response = table;
-            }
-            else if(image){
-                response = image;
-                type = 'image'
-            }
-            else{
-                const {response : re} = result;
-                response = re;
-
-            }
-
-            // console.log(result, 'hello')
-            setConversationList((prevList) => {
-                const updatedList = [...prevList];
-                const lastComponent = updatedList[updatedList.length - 1];
-                
-                updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :response, type: type });
-                
-                return updatedList;
-              });
-
-              setResponseResult('')
-              setLoading(false)
-              setTyping(false)
-
-        }).catch(error=>{
-            
-            setConversationList((prevList) => {
-                const updatedList = [...prevList];
-                const lastComponent = updatedList[updatedList.length - 1];
-                console.log(lastComponent)
-                
-                updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :'unexpected character' });
-                
-                return updatedList;
-              });
-              setTypingBtn(true)
-            setTyping(false);
-            setLoading(false)
-            console.log('some error occure', error);
-        })
-    }
-
-    const faqsHandle = (e)=>{
+    const inputHandle = async(e)=>{
         const faqsText = e.target.textContent;
-        console.log(e.target.textContent)
+        console.log(faqsText);
+        const QUESTIONVALUE = faqsText ? faqsText :  text;
+        try{
+            e.preventDefault();
 
-        setLoading(false);
+            setLoading(false);
+    
+            const newComponent = <Input text={QUESTIONVALUE} />;
+            const reponseComponent = <Response loading={loading} responseResult={responseResult} />;
+    
+            setConversationList([...conversationList, newComponent, reponseComponent]);
+    
+            setText('')
+            setTypingBtn(true)
+            setTyping(true);
+    
+    
+            
+    
+            const response = await fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL : process.env.REACT_APP_CHAT_STREAMING}/api/chat`, {
+                method: "post",
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content":  QUESTIONVALUE
+                        }
+                    ]
+                }),
+                });
+                if (!response.ok || !response.body) {
+                    throw response.statusText;
+                }
+            
+                // Here we start prepping for the streaming response
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                const loopRunner = true;
 
-        setConversationList([])
 
-        const newComponent = <Input text={faqsText} />;
-        const reponseComponent = <Response loading={loading} responseResult={responseResult} />;
-
-        setConversationList([...conversationList, newComponent, reponseComponent]);
-
-        setText('')
-        setTypingBtn(true)
-        setTyping(true);
-
-
-        fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL : process.env.REACT_APP_CHAT_GENE_URL}/${faqsText}`)
-        .then((respone=> respone.json() )).then(result=>{
-            let type = null;
-            let response = null;
-            // const {response} = result;
-            const {text, table, image} = result;
-
-            // console.log(table, 'table');
-
-            if(text){
-                response = text;
-            }
-            else if(table){
-                type = 'table'
-                response = table;
-            }
-            else if(image){
-                response = image;
-                type = 'image'
-            }
-            else{
-                const {response : re} = result;
-                response = re;
-
-            }
-
-            // console.log(result, 'hello')
-            setConversationList((prevList) => {
-                const updatedList = [...prevList];
-                const lastComponent = updatedList[updatedList.length - 1];
                 
-                updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :response, type: type });
-                
-                return updatedList;
-              });
+                let flag = '';
 
-              setResponseResult('')
-              setLoading(false)
-              setTyping(false)
+                while (loopRunner) {
+                    // Here we start reading the stream, until its done.
+                    const { value, done } = await reader.read();
+                    if (done) {
+                        break;
+                    }
+                    const decodedChunk = decoder.decode(value, { stream: true });
+                    console.log(decodedChunk, 'chunks');
+                    flag += decodedChunk;
+                    console.log(flag, 'flag');
 
-        }).catch(error=>{
+                    setConversationList((prevList) => {
+                        const updatedList = [...prevList];
+                        const lastComponent = updatedList[updatedList.length - 1];
+                        
+                        updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult : flag, type: 'text' });
+                        
+                        return updatedList;
+                    });
+
+                    setResponseResult('')
+                    setLoading(false)
+                    setTyping(false)
+                // setAnswer(answer => answer + decodedChunk); // update state with new chunk
+                }
+        }
+        catch(error){
             setLoading(false)
             setTyping(false);
             setConversationList((prevList) => {
@@ -164,22 +107,20 @@ const Chat = ({ chatType })=>{
                 const lastComponent = updatedList[updatedList.length - 1];
                 console.log(lastComponent)
                 
-                updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :'unexpected character' });
+                updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :'Request Time out' });
                 
                 return updatedList;
               });
              
-
             console.log('some error occure', error);
-        })
-
+        }
+       
     }
-
 
 
     return (
         <div className="chat-container">
-            <Sidebar toggle={toggle} toggleHandle={toggleHandle} faqsHandle={faqsHandle} setPromptList={setPromptList} promptList={promptList} chatType={chatType}  />
+            <Sidebar toggle={toggle} toggleHandle={toggleHandle} faqsHandle={inputHandle} setPromptList={setPromptList} promptList={promptList} chatType={chatType}  />
             <MainChat 
                 toggle={toggle} 
                 toggleHandle={toggleHandle}
