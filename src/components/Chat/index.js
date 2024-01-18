@@ -26,7 +26,7 @@ const Chat = ({ chatType })=>{
 
     const inputHandle = async(e)=>{
         const faqsText = e.target.textContent;
-        console.log(faqsText);
+        // console.log(faqsText);
         const QUESTIONVALUE = faqsText ? faqsText :  text;
         try{
             e.preventDefault();
@@ -42,62 +42,115 @@ const Chat = ({ chatType })=>{
             setTypingBtn(true)
             setTyping(true);
     
-    
+            
+            const requestOptions = {
+                method: chatType === 'csv' ? 'GET' : 'POST',
+                headers: {
+                  Accept: "application/json, text/plain, */*",
+                  "Content-Type": "application/json",
+                },
+              };
+              
+              if (chatType === 'csv') {
+                // If it's a GET request, no need to include the body
+                requestOptions.body = undefined;
+              } else {
+                // If it's a POST request, include the body
+                requestOptions.body = JSON.stringify({
+                  "messages": [
+                    {
+                      "role": "user",
+                      "content": QUESTIONVALUE
+                    }
+                  ]
+                });
+              }
             
     
-            const response = await fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL : process.env.REACT_APP_CHAT_STREAMING}/api/chat`, {
-                method: "post",
-                headers: {
-                    Accept: "application/json, text/plain, */*",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    "messages": [
-                        {
-                            "role": "user",
-                            "content":  QUESTIONVALUE
-                        }
-                    ]
-                }),
-                });
+            const response = await fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL+`/${QUESTIONVALUE}` : process.env.REACT_APP_CHAT_STREAMING+'/api/chat'}`, requestOptions);
                 if (!response.ok || !response.body) {
                     throw response.statusText;
                 }
             
-                // Here we start prepping for the streaming response
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder();
-                const loopRunner = true;
+                if(chatType === 'csv'){
 
+                    const result = await response.json();
 
-                
-                let flag = '';
+                    let type = null;
+                    let res = null;
+                    // const {res} = result;
+                    const {text, table, image} = result;
 
-                while (loopRunner) {
-                    // Here we start reading the stream, until its done.
-                    const { value, done } = await reader.read();
-                    if (done) {
-                        break;
+                    // console.log(table, 'table');
+
+                    if(text){
+                        res = text;
                     }
-                    const decodedChunk = decoder.decode(value, { stream: true });
-                    console.log(decodedChunk, 'chunks');
-                    flag += decodedChunk;
-                    console.log(flag, 'flag');
+                    else if(table){
+                        type = 'table'
+                        res = table;
+                    }
+                    else if(image){
+                        res = image;
+                        type = 'image'
+                    }
+                    else{
+                        const {res : re} = result;
+                        res = re;
 
+                    }
+
+                    // console.log(result, 'hello')
                     setConversationList((prevList) => {
                         const updatedList = [...prevList];
                         const lastComponent = updatedList[updatedList.length - 1];
-                        
-                        updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult : flag, type: 'text' });
-                        
+
+                        updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :res, type: type });
+
                         return updatedList;
                     });
 
                     setResponseResult('')
                     setLoading(false)
                     setTyping(false)
-                // setAnswer(answer => answer + decodedChunk); // update state with new chunk
+
+                }else{
+                    // Here we start prepping for the streaming response
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    const loopRunner = true;
+    
+    
+                    
+                    let flag = '';
+    
+                    while (loopRunner) {
+                        // Here we start reading the stream, until its done.
+                        const { value, done } = await reader.read();
+                        if (done) {
+                            break;
+                        }
+                        const decodedChunk = decoder.decode(value, { stream: true });
+                        // console.log(decodedChunk, 'chunks');
+                        flag += decodedChunk;
+                        // console.log(flag, 'flag');
+    
+                        setConversationList((prevList) => {
+                            const updatedList = [...prevList];
+                            const lastComponent = updatedList[updatedList.length - 1];
+                            
+                            updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult : flag, type: 'text' });
+                            
+                            return updatedList;
+                        });
+    
+                        setResponseResult('')
+                        setLoading(false)
+                        setTyping(false)
+                    // setAnswer(answer => answer + decodedChunk); // update state with new chunk
+                    }
                 }
+
         }
         catch(error){
             setLoading(false)
@@ -105,7 +158,7 @@ const Chat = ({ chatType })=>{
             setConversationList((prevList) => {
                 const updatedList = [...prevList];
                 const lastComponent = updatedList[updatedList.length - 1];
-                console.log(lastComponent)
+                // console.log(lastComponent)
                 
                 updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :'Request Time out' });
                 

@@ -6,14 +6,14 @@ import { Image } from "antd";
 
 
 function Response({ loading, responseResult, type }) {
-  console.log(type);
-  console.log(responseResult);
+  // console.log(type);
+  // console.log(responseResult);
   let columns = null
 
   if(type === 'table'){
     if(responseResult.length> 0){
       columns = Object.keys(responseResult[0]);
-      console.log(columns)
+      // console.log(columns)
     }
     else{
       type = null;
