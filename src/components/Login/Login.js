@@ -47,7 +47,7 @@ function Login() {
 
   return (
     <div className={styles.contain}>
-      <img className={styles.geLogo} src={process.env.PUBLIC_URL+"/dist/images/chatge-logo.png"} width="180px" alt="log" />
+      <img className={styles.geLogo} src={process.env.PUBLIC_URL+"/dist/images/chatge-logo.png"} width="250px" alt="log" />
       <div className={styles.container}>
         <h3>
           <span>Welcome to ChatGene,</span><br/> where cutting-edge technology meets

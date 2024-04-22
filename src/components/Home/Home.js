@@ -31,7 +31,7 @@ function Home() {
                         process.env.PUBLIC_URL + "/dist/images/chatge-logo.png"
                       }
                       alt="Logo"
-                      width="100px"
+                      width="200px"
                     />
                   </Link>
                 </h1>
