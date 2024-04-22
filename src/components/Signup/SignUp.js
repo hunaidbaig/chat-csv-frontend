@@ -49,7 +49,7 @@ function SignUp() {
       <img
         className={styles.geLogo}
         src={process.env.PUBLIC_URL + "/dist/images/chatge-logo.png"}
-        width="180px"
+        width="250px"
         alt="log"
       />
       <div className={styles.container}>
