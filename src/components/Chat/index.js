@@ -67,7 +67,7 @@ const Chat = ({ chatType })=>{
               }
             
     
-            const response = await fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL+`/${QUESTIONVALUE}` : process.env.REACT_APP_CHAT_STREAMING+'/api/chat'}`, requestOptions);
+            const response = await fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL+`/ask/${QUESTIONVALUE}` : process.env.REACT_APP_CHAT_STREAMING+'/api/chat'}`, requestOptions);
                 if (!response.ok || !response.body) {
                     throw response.statusText;
                 }

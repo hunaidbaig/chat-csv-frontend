@@ -131,8 +131,8 @@
   color: #0b87f8;
   font-weight: bold;
   align-items: center;
-  /* background-color: #0b87f8; */
-  background-color: #3f586f;
+  background-color: #0b87f8;
+  /* background-color: #3f586f; */
 
 }
 
@@ -174,6 +174,21 @@
   border: none;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.upload-file-btn {
+    min-width: 60px;
+    min-height: 60px;
+    margin-left: 10px;
+    background-color: #0b87f8;
+    border: none;
+    color: #ffffff;
+}
+.upload-file-btn:active, .upload-file-btn:hover {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+.upload-file-btn svg {
+  font-size: 24px;
 }
 /* .clear-icon{
   margin-left: 5px;

@@ -43,7 +43,7 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType  }) => 
         <p className='faqs'>FAQs</p>
         {/* <button onClick={()=> toggleHandle()} ><FaBars/></button> */}
       </div>
-      {
+{
         chatType === 'csv' ?
         <div className='chats'>
         <p onClick={(e)=> faqsHandle(e)} > Which customer placed the most orders in Quarter 2 of 2022, and what was the total quantity of items they ordered during that quarter?</p>
