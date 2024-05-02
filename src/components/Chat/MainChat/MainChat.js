@@ -53,7 +53,6 @@ const MainChat = ({
 
 
   const compressFile = (file) => {
-    const fileName = file.name.replace(".csv", "")
     const reader = new FileReader();
     reader.onload = async (event) => {
       const csvData = event.target.result;
@@ -67,7 +66,6 @@ const MainChat = ({
   };
 
   const handleUploadCsvFile = async (file) => {
-    console.log("file after compressed ", file)
     setSpinLoading(true);
     const formData = new FormData();
     formData.append("file", file);
@@ -107,7 +105,6 @@ const MainChat = ({
 
   const props = {
     beforeUpload: (file) => {
-      console.log("File before compressed  ",file);
       const isCSV = file.type === "text/csv";
       if (!isCSV) {
         message.error(`${file.name} is not a CSV file`);
