@@ -28,7 +28,7 @@ function Home() {
                     <img
                       className="header-logo-image"
                       src={
-                        process.env.PUBLIC_URL + "/dist/images/chatge-logo.png"
+                        process.env.PUBLIC_URL + "/dist/images/xloop-chat-logo1.png"
                       }
                       alt="Logo"
                       width="200px"

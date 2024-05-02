@@ -9,7 +9,7 @@ const Footer = ()=>{
                     <div className="site-footer-inner" style={{display:"flex" , justifyContent:"center", alignItems: "center", flexDirection:"column"}}>
                         <div>
                             <Link to="#">
-                                <img className="header-logo-image" src={process.env.PUBLIC_URL+"dist/images/logo.png"} alt="Logo" width="70x"/>
+                                <img className="header-logo-image" src={process.env.PUBLIC_URL+"dist/images/xloop-chat-logo1.png"} alt="Logo" width="70x"/>
                             </Link>
                         </div>
                         <div>&copy; All rights reserved.</div>
