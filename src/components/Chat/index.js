@@ -78,7 +78,6 @@ const Chat = ({ chatType })=>{
                 }
             
                 if(chatType === 'csv'){
-                    setDisabledFAQ(false);
 
                     const result = await response.json();
 
@@ -116,6 +115,7 @@ const Chat = ({ chatType })=>{
                         return updatedList;
                     });
 
+                    setDisabledFAQ(false);
                     setResponseResult('')
                     setLoading(false)
                     setTyping(false)
@@ -125,7 +125,6 @@ const Chat = ({ chatType })=>{
                     const reader = response.body.getReader();
                     const decoder = new TextDecoder();
                     const loopRunner = true;
-                    setDisabledFAQ(false);
 
     
                     
@@ -150,7 +149,8 @@ const Chat = ({ chatType })=>{
                             
                             return updatedList;
                         });
-    
+                        
+                        setDisabledFAQ(false);
                         setResponseResult('')
                         setLoading(false)
                         setTyping(false)

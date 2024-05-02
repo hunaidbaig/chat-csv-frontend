@@ -70,12 +70,24 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType, setDis
         }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Show a table listing all orders with a 'Status' of 'Pending'</p>      </div>
         :
       <div className='chats'>
-        <p onClick={(e)=> faqsHandle(e)} > What were the amendments to the project documents?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What is letter of hypothecation?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What is EPC direct agreement?</p>
-        <p onClick={(e)=> faqsHandle(e)} > What is acceptable letter of credit?</p>
-        <p onClick={(e)=> faqsHandle(e)} > Give me summary of environmental,health and safety guidelines.</p>
-        <p onClick={(e)=> faqsHandle(e)} > Give me main points of rules of interpretation?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > What were the amendments to the project documents?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > What is letter of hypothecation?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > What is EPC direct agreement?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > What is acceptable letter of credit?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > Give me summary of environmental,health and safety guidelines.</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > Give me main points of rules of interpretation?</p>
       </div>
       }
       <div className='flex-faqs'>
