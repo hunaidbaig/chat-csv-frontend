@@ -46,30 +46,39 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType, setDis
 {
         chatType === 'csv' ?
         <div className='chats'>
-    
         <p onClick={(e)=> {
           if(!disabledFAQ){ faqsHandle(e)}
-          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Which customer placed the most orders in Quarter 2 of 2022, and what was the total quantity of items they ordered during that quarter?</p>
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> What is the distribution of valid complaints across areas?</p>
         <p onClick={(e)=> {
           if(!disabledFAQ){ faqsHandle(e)}
-          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Which product 'Style' had the highest average order quantity, and what was that quantity?</p>
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > What is the distribution of branch ratings in the dataset?</p>
         <p onClick={(e)=> {
           if(!disabledFAQ){ faqsHandle(e)}
-          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Visualize the growth of the social network over time, showing the number of new users joining each month. Are there any significant spikes in user growth?</p>
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > Plot a bar graph of the distribution of branch ratings in the dataset?</p>
         <p onClick={(e)=> {
           if(!disabledFAQ){ faqsHandle(e)}
-          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Create a table summarizing the average order amount for each category.</p>
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > provide me table of the average score for all these LSM,CC,CA,BFA,ATM,VOC,SR,AOP,CB,CRT,PMS,O-EF,VMS performance metric across all branches?</p>
         <p onClick={(e)=> {
           if(!disabledFAQ){ faqsHandle(e)}
-          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Provide a table showing the top 10 rows of the dataset, including all columns.</p>
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > Which branch has the highest total points MTD and which one has the lowest?</p>
         <p onClick={(e)=> {
           if(!disabledFAQ){ faqsHandle(e)}
-          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> What is the overall order fulfillment status breakdown in terms of percentages in table?</p>
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > How many branches have valid complaints and behavior complaints?</p>
         <p onClick={(e)=> {
-        if(!disabledFAQ){   faqsHandle(e)}
-        }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Show a table listing all orders with a 'Status' of 'Pending'</p>      </div>
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > Provide me the table of the distribution of ratings among different clusters?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > How do branches compare to the overall average or benchmarks in terms of KPI points and other metrics?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > Provide me with a table where I can find the "Hall of Shame" Ratings ascending order in result wise?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > How much branch performance differ across different clusters and areas</p>
+        </div>
         :
-      <div className='chats'>
+        <div className='chats'>
         <p onClick={(e)=> {
           if(!disabledFAQ){ faqsHandle(e)}
           }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > What were the amendments to the project documents?</p>
