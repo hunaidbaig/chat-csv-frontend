@@ -99,12 +99,12 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType, setDis
           }} className={disabledFAQ ? "non-clickable-paragraph" : ""} > Give me main points of rules of interpretation?</p>
       </div>
       }
-      <div className='flex-faqs'>
+      {/* <div className='flex-faqs'>
       {/* <span onClick={(e)=> promptHandle(e)} > <AiOutlineFileAdd /> </span> */}
-        <p className='prompts'>My Prompts  </p>
+        {/* <p className='prompts'>My Prompts  </p> */}
         {/* <button onClick={()=> toggleHandle()} ><FaBars/></button> */}
-      </div>
-      <div className='prompts-chats'>
+      {/* </div> */} 
+      {/* <div className='prompts-chats'>
 
         {
           promptList.length === 0 ?  <div>You have no Prompts</div> 
@@ -112,7 +112,7 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType, setDis
           promptList.map((questions, index) =>(
             <p className="letter-transform" key={index} onClick={(e)=> faqsHandle(e)} >{questions}</p>
           ))
-        }
+        } */}
 
         {/* {
           showPrompt ? 
@@ -125,7 +125,7 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType, setDis
             : <></>
         }
          */}
-      </div>
+      {/* </div> */}
       <div className='flex-2'>
         {/* <button onClick={handleLogOut}>Log out</button> */}
         <p className="user">

@@ -48,7 +48,7 @@ function SignUp() {
     <div className={styles.contain}>
       <img
         className={styles.geLogo}
-        src={process.env.PUBLIC_URL + "/dist/images/chatge-logo.png"}
+        src={process.env.PUBLIC_URL + "/dist/images/xloop-chat-logo1.png"}
         width="250px"
         alt="log"
       />
