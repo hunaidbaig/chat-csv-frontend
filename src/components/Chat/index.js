@@ -96,8 +96,14 @@ const Chat = ({ chatType })=>{
                         res = table;
                     }
                     else if(image){
+                       if(image.includes(" ")) {
+                        res = image;
+                        type = "text"
+                       }
+                       else{
                         res = image;
                         type = 'image'
+                       }
                     }
                     else{
                         const {res : re} = result;
@@ -149,7 +155,7 @@ const Chat = ({ chatType })=>{
                             
                             return updatedList;
                         });
-                        
+
                         setDisabledFAQ(false);
                         setResponseResult('')
                         setLoading(false)
