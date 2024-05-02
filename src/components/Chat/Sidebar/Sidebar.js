@@ -7,7 +7,7 @@ import { BiLogOut } from "react-icons/bi";
 
 
 
-const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType  }) => {
+const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType, setDisabledFAQ, disabledFAQ  }) => {
   
   const { user, logOut } = useUserAuth();
   // const [ promptList, setPromptList ] = useState([])
@@ -46,14 +46,28 @@ const Sidebar = ({ toggle, toggleHandle, faqsHandle,promptList, chatType  }) => 
 {
         chatType === 'csv' ?
         <div className='chats'>
-        <p onClick={(e)=> faqsHandle(e)} > Which customer placed the most orders in Quarter 2 of 2022, and what was the total quantity of items they ordered during that quarter?</p>
-        <p onClick={(e)=> faqsHandle(e)} > Which product 'Style' had the highest average order quantity, and what was that quantity?</p>
-        <p onClick={(e)=> faqsHandle(e)} > Visualize the growth of the social network over time, showing the number of new users joining each month. Are there any significant spikes in user growth?</p>
-        <p onClick={(e)=> faqsHandle(e)} > Create a table summarizing the average order amount for each category.</p>
-        <p onClick={(e)=> faqsHandle(e)} > Provide a table showing the top 10 rows of the dataset, including all columns.</p>
-        <p onClick={(e)=> faqsHandle(e)} > What is the overall order fulfillment status breakdown in terms of percentages in table?</p>
-        <p onClick={(e)=> faqsHandle(e)} > Show a table listing all orders with a 'Status' of 'Pending'</p>
-      </div>
+    
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Which customer placed the most orders in Quarter 2 of 2022, and what was the total quantity of items they ordered during that quarter?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Which product 'Style' had the highest average order quantity, and what was that quantity?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Visualize the growth of the social network over time, showing the number of new users joining each month. Are there any significant spikes in user growth?</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Create a table summarizing the average order amount for each category.</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Provide a table showing the top 10 rows of the dataset, including all columns.</p>
+        <p onClick={(e)=> {
+          if(!disabledFAQ){ faqsHandle(e)}
+          }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> What is the overall order fulfillment status breakdown in terms of percentages in table?</p>
+        <p onClick={(e)=> {
+        if(!disabledFAQ){   faqsHandle(e)}
+        }} className={disabledFAQ ? "non-clickable-paragraph" : ""}> Show a table listing all orders with a 'Status' of 'Pending'</p>      </div>
         :
       <div className='chats'>
         <p onClick={(e)=> faqsHandle(e)} > What were the amendments to the project documents?</p>

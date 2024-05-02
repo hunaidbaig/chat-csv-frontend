@@ -89,6 +89,10 @@
   /* line-height: 1.5; */
 }
 
+.non-clickable-paragraph {
+  /* pointer-events: none; */
+  cursor: not-allowed !important;
+}
 
 [class^="letter-transform"]::first-letter{
   text-transform: capitalize;

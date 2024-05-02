@@ -15,7 +15,8 @@ const Chat = ({ chatType })=>{
     const [typingBtn, setTypingBtn] = useState(true);
     const [typing, setTyping] = useState(false);
     const [responseResult, setResponseResult] = useState('');
-    const [ promptList, setPromptList ] = useState([])
+    const [ promptList, setPromptList ] = useState([]);
+    const [disabledFAQ, setDisabledFAQ] = useState(false);
 
 
 
@@ -26,6 +27,9 @@ const Chat = ({ chatType })=>{
 
     const inputHandle = async(e)=>{
         const faqsText = e.target.textContent;
+        if(faqsText) {
+            setDisabledFAQ(true);
+        }
         // console.log(faqsText);
         const QUESTIONVALUE = faqsText ? faqsText :  text;
         try{
@@ -69,10 +73,12 @@ const Chat = ({ chatType })=>{
     
             const response = await fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL+`/ask/${QUESTIONVALUE}` : process.env.REACT_APP_CHAT_STREAMING+'/api/chat'}`, requestOptions);
                 if (!response.ok || !response.body) {
+                    setDisabledFAQ(false);
                     throw response.statusText;
                 }
             
                 if(chatType === 'csv'){
+                    setDisabledFAQ(false);
 
                     const result = await response.json();
 
@@ -119,7 +125,8 @@ const Chat = ({ chatType })=>{
                     const reader = response.body.getReader();
                     const decoder = new TextDecoder();
                     const loopRunner = true;
-    
+                    setDisabledFAQ(false);
+
     
                     
                     let flag = '';
@@ -155,6 +162,8 @@ const Chat = ({ chatType })=>{
         catch(error){
             setLoading(false)
             setTyping(false);
+            setDisabledFAQ(false);
+
             setConversationList((prevList) => {
                 const updatedList = [...prevList];
                 const lastComponent = updatedList[updatedList.length - 1];
@@ -173,7 +182,7 @@ const Chat = ({ chatType })=>{
 
     return (
         <div className="chat-container">
-            <Sidebar toggle={toggle} toggleHandle={toggleHandle} faqsHandle={inputHandle} setPromptList={setPromptList} promptList={promptList} chatType={chatType}  />
+            <Sidebar toggle={toggle} toggleHandle={toggleHandle} faqsHandle={inputHandle} setPromptList={setPromptList} promptList={promptList} chatType={chatType} setDisabledFAQ={setDisabledFAQ} disabledFAQ={disabledFAQ} />
             <MainChat 
                 toggle={toggle} 
                 toggleHandle={toggleHandle}
