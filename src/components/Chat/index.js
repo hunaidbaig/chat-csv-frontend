@@ -96,7 +96,7 @@ const Chat = ({ chatType })=>{
                         res = table;
                     }
                     else if(image){
-                       if(image.includes(" ")) {
+                       if(image.includes(" ") ) {
                         res = image;
                         type = "text"
                        }
