@@ -33,14 +33,14 @@ const MainChat = ({ promptList ,toggle, toggleHandle, conversationList, typingBt
     }
 
     async function handleClearChat() {
-        try {
-            const response = await fetch(`${process.env.REACT_APP_CHAT_SALES_URL+'/clear_history'}`, {
-                method : 'POST',
-            });
-            // console.log(response);
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const response = await fetch(`${process.env.REACT_APP_CHAT_SALES_URL+'/clear_history'}`, {
+        //         method : 'POST',
+        //     });
+        //     // console.log(response);
+        // } catch (error) {
+        //     console.log(error);
+        // }
         setConversationList([]);
       }
 
