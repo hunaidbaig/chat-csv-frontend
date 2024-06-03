@@ -5,6 +5,7 @@
     text-align: justify;
     display: flex;
     margin-bottom: 1.3rem;
+    overflow: hidden;
 }
 .container-response span{
 background-color: #0b87f8;

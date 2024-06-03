@@ -27,13 +27,20 @@ const MainChat = ({ promptList ,toggle, toggleHandle, conversationList, typingBt
 
 
     const saveHandle = () => {
-
         setPromptList([...promptList, text ]);
         setText('')
         console.log('save')
     }
 
-    function handleClearChat() {
+    async function handleClearChat() {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_CHAT_SALES_URL+'/clear_history'}`, {
+                method : 'POST',
+            });
+            // console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
         setConversationList([]);
       }
 

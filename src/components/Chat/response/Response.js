@@ -5,21 +5,39 @@ import { BeatLoader } from "react-spinners";
 import { Image } from "antd";
 
 
-function Response({ loading, responseResult, type }) {
-  // console.log(type);
-  // console.log(responseResult);
-  let columns = null
+function Response({ loading, responseResult }) {
 
-  if(type === 'table'){
-    if(responseResult.length> 0){
-      columns = Object.keys(responseResult[0]);
-      // console.log(columns)
-    }
-    else{
-      type = null;
-      responseResult = 'no records.'
-    }
+  const renderTable = (data)=>{
+    return(
+        <div style={{ overflowX: 'scroll', marginBottom: '1rem', height : '300px', overflowY: 'auto' }}>
+          <table>
+            <thead>
+              <tr>
+                {Object.keys(data[0])?.map((column, index) => (
+                  <th className="table_heading" key={index}>{column}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {data?.map((item, index) => (
+                <tr key={index}>
+                  {Object.keys(data[0])?.map((column, colIndex) => (
+                    <td className="table_column" key={colIndex}>{item[column]}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+    )
   }
+
+  const convertResponseDfToArray = (responseDf) => {
+    return Object.entries(responseDf).map(([key, value]) => ({
+      ColumnA: key,
+      ColumnB: value
+    }));
+  };
 
   return (
     <div className='container-response'>
@@ -28,45 +46,35 @@ function Response({ loading, responseResult, type }) {
         !loading ? <BeatLoader size={15}  color="#0b87f8" style={{ backgroundColor: 'transparent' }} />
         :  
         (
-          type === 'image' ? 
-          <Image
-            src={`data:image/jpeg;base64,${responseResult}`} alt="resutl image"
-          />
-          // <img src={`data:image/jpeg;base64,${responseResult}`} alt="resutl image" />
-        :
-        (
-          type === 'table' ? 
-          <div style={{overflowX: 'scroll'}}>
-            <table>
-              <thead>
-                <tr>
-                  {columns.map((column, index) => (
-                    <th className="table_heading" key={index}>{column}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {responseResult.map((item, index) => (
-                  <tr key={index}>
-                    {columns.map((column, colIndex) => (
-                      <td className="table_column" key={colIndex}>{item[column]}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          :
-            <p>
-            {
-            
-              typeof responseResult === 'object' ? 
-              JSON.stringify(responseResult)
-              :
-              responseResult
-            }
-            </p>
-        )
+          <>
+            <div style={{ overflow: 'auto' }}>
+              {(responseResult?.hasOwnProperty('table') && responseResult['table'] !== "None" )&& (
+                Array.isArray(responseResult.table) ? 
+                (renderTable(responseResult?.table))
+                :
+                (renderTable(convertResponseDfToArray(responseResult?.table)))
+              )}
+
+              {(responseResult?.hasOwnProperty('llm2_response') && responseResult['llm2_response'] !== "None") && (
+                <p>
+                  {responseResult?.llm2_response}
+                </p>
+              )}
+              
+              {(responseResult?.hasOwnProperty('image') && responseResult['image'] !== "None") && (
+                <Image
+                  src={`data:image/jpeg;base64,${responseResult?.image}`}
+                  alt="result image"
+                />
+              )}
+
+              {(responseResult?.hasOwnProperty('text') && responseResult['text'] !== "None") && (
+                <p>
+                  {responseResult?.text}
+                </p>
+              )}
+            </div>
+          </>
         )
       }
    
