@@ -67,7 +67,7 @@ const Chat = ({ chatType })=>{
               }
             
     
-            const response = await fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL+`/ask/${QUESTIONVALUE}` : process.env.REACT_APP_CHAT_STREAMING+'/api/chat'}`, requestOptions);
+            const response = await fetch(`${ chatType === 'csv' ? process.env.REACT_APP_CHAT_SALES_URL+`/${QUESTIONVALUE}` : process.env.REACT_APP_CHAT_STREAMING+'/api/chat'}`, requestOptions);
                 if (!response.ok || !response.body) {
                     throw response.statusText;
                 }
@@ -79,37 +79,33 @@ const Chat = ({ chatType })=>{
                     let type = null;
                     let res = null;
                     // const {res} = result;
-                    
-                    // const {text, response_df, image} = result;
+                    const {text, table, image} = result;
 
                     // console.log(table, 'table');
 
-                    // type = 'table'
-                    // res = response_df;
+                    if(text){
+                        res = text;
+                    }
+                    else if(table){
+                        type = 'table'
+                        res = table;
+                    }
+                    else if(image){
+                        res = image;
+                        type = 'image'
+                    }
+                    else{
+                        const {res : re} = result;
+                        res = re;
 
-                    // if(text){
-                    //     res = text;
-                    // }
-                    // else if(response_df){
-                    //     type = 'table'
-                    //     res = response_df;
-                    // }
-                    // else if(image){
-                    //     res = image;
-                    //     type = 'image'
-                    // }
-                    // else{
-                    //     const {res : re} = result;
-                    //     res = re;
-
-                    // }
+                    }
 
                     // console.log(result, 'hello')
                     setConversationList((prevList) => {
                         const updatedList = [...prevList];
                         const lastComponent = updatedList[updatedList.length - 1];
 
-                        updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :result, type: type });
+                        updatedList[updatedList.length - 1] = React.cloneElement(lastComponent, { loading: true, responseResult :res, type: type });
 
                         return updatedList;
                     });
